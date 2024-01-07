@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Shopagram</string>
+    <string name="rightAddress">Alışverişin \nDoğru Adresi !</string>
+    <string name="qulity">Tarzını Keşfet!</string>
+    <string name="shopagam">Shopagam</string>
+    <string name="register">Üye Ol</string>
+    <string name="login">Giriş Yap</string>
+    <string name="start">Başla</string>
+    <string name="add_to_cart">Sepete Ekle</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "876605629247",
+    "project_id": "shopagram-251d2",
+    "storage_bucket": "shopagram-251d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876605629247:android:1f9d58a2f9cdc59b3be98a",
+        "android_client_info": {
+          "package_name": "com.example.shopagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnWi354pifwlxQKP5r2G60Fow7B2JrRks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
