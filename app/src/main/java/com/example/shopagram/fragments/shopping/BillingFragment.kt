@@ -121,7 +121,7 @@ class BillingFragment : Fragment() {
                     is Resource.Success -> {
                         binding.buttonPlaceOrder.revertAnimation()
                         findNavController().navigateUp()
-                        Snackbar.make(requireView(), "Your order was placed", Snackbar.LENGTH_LONG)
+                        Snackbar.make(requireView(), "Siparişiniz alındı", Snackbar.LENGTH_LONG)
                             .show()
                     }
 
@@ -145,7 +145,7 @@ class BillingFragment : Fragment() {
 
         binding.buttonPlaceOrder.setOnClickListener {
             if (selectedAddress == null) {
-                Toast.makeText(requireContext(), "Please select and address", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Lütfen Adres Seçin !", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
@@ -156,12 +156,12 @@ class BillingFragment : Fragment() {
 
     private fun showOrderConfirmationDialog() {
         val alertDialog = AlertDialog.Builder(requireContext()).apply {
-            setTitle("Order items")
-            setMessage("Do you want to order your cart items?")
-            setNegativeButton("Cancel") { dialog, _ ->
+            setTitle("Sipariş")
+            setMessage("Sepetinizdeki ürünleri sipariş etmek ister misiniz?")
+            setNegativeButton("Hayır") { dialog, _ ->
                 dialog.dismiss()
             }
-            setPositiveButton("Yes") { dialog, _ ->
+            setPositiveButton("Evet") { dialog, _ ->
                 val order = Order(
                     OrderStatus.Ordered.status,
                     totalPrice,

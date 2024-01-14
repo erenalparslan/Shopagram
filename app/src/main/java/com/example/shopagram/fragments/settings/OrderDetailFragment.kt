@@ -40,7 +40,7 @@ class OrderDetailFragment : Fragment() {
 
         binding.apply {
 
-            tvOrderId.text = "Order #${order.orderId}"
+            tvOrderId.text = "Sipariş #${order.orderId}"
 
 
             stepView.setSteps(

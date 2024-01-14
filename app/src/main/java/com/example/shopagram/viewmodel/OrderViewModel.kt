@@ -26,9 +26,6 @@ class OrderViewModel @Inject constructor(
             _order.emit(Resource.Loading())
         }
         firestore.runBatch { batch ->
-            //TODO: Add the order into user-orders collection
-            //TODO: Add the order into orders collection
-            //TODO: Delete the products from user-cart collection
 
             firestore.collection("user")
                 .document(auth.uid!!)
