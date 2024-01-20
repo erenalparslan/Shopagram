@@ -1,5 +1,7 @@
 package com.example.shopagram.fragments.shopping
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,20 +14,25 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.shopagram.R
 import com.example.shopagram.activities.ShoppingActivity
 import com.example.shopagram.adapters.ColorsAdapter
 import com.example.shopagram.adapters.SizesAdapter
 import com.example.shopagram.adapters.ViewPager2Images
 import com.example.shopagram.data.CartProduct
+import com.example.shopagram.data.Post
 import com.example.shopagram.data.Product
 import com.example.shopagram.databinding.FragmentProductDetailsBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.hideBottomNavigationView
 import com.example.shopagram.viewmodel.DetailsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.type.Date
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import java.lang.ref.Cleaner
+import java.util.Calendar
 
 @AndroidEntryPoint
 class ProductDetailsFragment : Fragment() {
@@ -73,6 +80,14 @@ class ProductDetailsFragment : Fragment() {
             viewModel.addUpdateProductInCart(CartProduct(product, 1, selectedColor, selectedSize))
         }
 
+        binding.sharePost.setOnClickListener {
+            val user=viewModel.user.value.data
+
+            val date=Calendar.getInstance().time
+            viewModel.sharePost(Post(user, product,date) )
+        }
+
+
         lifecycleScope.launchWhenStarted {
             viewModel.addToCart.collectLatest {
                 when (it) {
@@ -87,6 +102,27 @@ class ProductDetailsFragment : Fragment() {
 
                     is Resource.Error -> {
                         binding.buttonAddToCart.stopAnimation()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.sharePost.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.sharePost.startAnimation()
+                    }
+
+                    is Resource.Success -> {
+                        binding.sharePost.revertAnimation()
+                        binding.sharePost.setBackgroundColor(resources.getColor(R.color.white))
+                    }
+
+                    is Resource.Error -> {
+                        binding.sharePost.stopAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

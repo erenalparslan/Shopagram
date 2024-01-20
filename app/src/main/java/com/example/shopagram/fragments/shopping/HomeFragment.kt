@@ -34,7 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.viewpagerHome.currentItem=0
         val categoriesFragments = arrayListOf(
             MainCategoryFragment(),
-            ChairFragment(),
+            SweatshirtFragment(),
             ShoeFragment(),
             TableFragment(),
             PhoneFragment(),
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         TabLayoutMediator(binding.tabLayout, binding.viewpagerHome) { tab, position ->
             when (position) {
                 0 -> tab.text = "Anasayfa"
-                1 -> tab.text = "Sandalye"
+                1 -> tab.text = "Sweatshirt"
                 2 -> tab.text = "Ayakkabı"
                 3 -> tab.text = "Masa"
                 4 -> tab.text = "Telefon"

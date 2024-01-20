@@ -3,6 +3,8 @@ package com.example.shopagram.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopagram.data.CartProduct
+import com.example.shopagram.data.Post
+import com.example.shopagram.data.User
 import com.example.shopagram.firebase.FirebaseCommon
 import com.example.shopagram.util.Resource
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +24,16 @@ class DetailsViewModel @Inject constructor(
 
     private val _addToCart = MutableStateFlow<Resource<CartProduct>>(Resource.Unspecified())
     val addToCart = _addToCart.asStateFlow()
+
+    private val _sharePost = MutableStateFlow<Resource<Post>>(Resource.Unspecified())
+    val sharePost = _sharePost.asStateFlow()
+
+    private val _user = MutableStateFlow<Resource<User>>(Resource.Unspecified())
+    val user = _user.asStateFlow()
+
+    init {
+        getUser()
+    }
 
     fun addUpdateProductInCart(cartProduct: CartProduct) {
         viewModelScope.launch { _addToCart.emit(Resource.Loading()) }
@@ -46,6 +58,16 @@ class DetailsViewModel @Inject constructor(
             }
     }
 
+    fun sharePost(post: Post) {
+        viewModelScope.launch { _sharePost.emit(Resource.Loading()) }
+        firestore.collection("sharedPosts").add(post)
+            .addOnSuccessListener {
+              viewModelScope.launch { _sharePost.emit(Resource.Success(post!!)) }
+            }.addOnFailureListener {
+                viewModelScope.launch { _addToCart.emit(Resource.Error(it.message.toString())) }
+            }
+    }
+
     private fun addNewProduct(cartProduct: CartProduct) {
         firebaseCommon.addProductToCart(cartProduct) { addedProduct, e ->
             viewModelScope.launch {
@@ -55,6 +77,27 @@ class DetailsViewModel @Inject constructor(
                     _addToCart.emit(Resource.Error(e.message.toString()))
             }
         }
+    }
+
+    fun getUser() {
+        viewModelScope.launch {
+            _user.emit(Resource.Loading())
+        }
+        firestore.collection("user").document(auth.uid!!)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    viewModelScope.launch {
+                        _user.emit(Resource.Error(error.message.toString()))
+                    }
+                } else {
+                    val user = value?.toObject(User::class.java)
+                    user?.let {
+                        viewModelScope.launch {
+                            _user.emit(Resource.Success(user))
+                        }
+                    }
+                }
+            }
     }
 
     private fun increaseQuantity(documentId: String, cartProduct: CartProduct) {

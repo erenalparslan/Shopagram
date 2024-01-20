@@ -1,7 +1,6 @@
 package com.example.shopagram.fragments.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,13 +15,13 @@ import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ChairFragment : BaseCategoryFragment() {
+class SweatshirtFragment : BaseCategoryFragment() {
 
     @Inject
     lateinit var firestore: FirebaseFirestore
 
     val viewModel by viewModels<CategoryViewModel> {
-        BaseCategoryViewModelFactoryFactory(firestore, Category.Chair)
+        BaseCategoryViewModelFactoryFactory(firestore, Category.Sweatshirt)
     }
 
 

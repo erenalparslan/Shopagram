@@ -113,4 +113,12 @@
             android:name="order"
             app:argType="com.example.shopagram.data.order.Order" />
     </fragment>
+    <fragment
+        android:id="@+id/socialFragment"
+        android:name="com.example.shopagram.fragments.social.SocialFragment"
+        android:label="SocialFragment" >
+        <action
+            android:id="@+id/action_socialFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
 </navigation>

@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10sp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardProductImages"
@@ -25,12 +26,13 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerProductImages"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageClose"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_close"
                 android:padding="5dp"
                 app:tint="@color/g_black"/>
@@ -147,18 +149,31 @@
         </LinearLayout>
 
         <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/buttonAddToCart"
+            android:id="@+id/sharePost"
             android:layout_width="0dp"
             android:layout_height="@dimen/mediumButtonHeight"
-            style="@style/blueButtonStyle"
-            app:layout_constraintTop_toBottomOf="@id/linearProductPref"
-            app:layout_constraintStart_toStartOf="@id/linearProductPref"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Paylaş"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddToCart"
             app:layout_constraintEnd_toEndOf="@id/linearProductPref"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="45dp"
+            app:layout_constraintStart_toStartOf="@id/linearProductPref"
+            app:layout_constraintTop_toBottomOf="@id/linearProductPref"
+            app:spinning_bar_color="@color/white" />
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/buttonAddToCart"
+            style="@style/blueButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/mediumButtonHeight"
             android:layout_marginBottom="20dp"
+
             android:text="Sepete Ekle"
-            app:spinning_bar_color="@color/white"/>
+            app:layout_constraintTop_toBottomOf="@id/sharePost"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/linearProductPref"
+            app:layout_constraintStart_toStartOf="@id/linearProductPref"
+            app:spinning_bar_color="@color/white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
