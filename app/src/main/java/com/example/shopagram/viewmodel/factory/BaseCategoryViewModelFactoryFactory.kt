@@ -1,9 +1,9 @@
-package com.example.shopagram.util.viewmodel.factory
+package com.example.shopagram.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopagram.data.Category
-import com.example.shopagram.util.viewmodel.CategoryViewModel
+import com.example.shopagram.viewmodel.CategoryViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class BaseCategoryViewModelFactoryFactory(

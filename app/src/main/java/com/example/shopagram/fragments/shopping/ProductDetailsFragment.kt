@@ -20,7 +20,7 @@ import com.example.shopagram.data.Post
 import com.example.shopagram.databinding.FragmentProductDetailsBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.util.viewmodel.DetailsViewModel
+import com.example.shopagram.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.Calendar

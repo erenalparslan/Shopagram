@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopagram.adapters.AllOrdersAdapter
 import com.example.shopagram.databinding.FragmentOrdersBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.AllOrdersViewModel
+import com.example.shopagram.viewmodel.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

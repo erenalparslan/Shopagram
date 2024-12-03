@@ -1,4 +1,4 @@
-package com.example.shopagram.util.viewmodel
+package com.example.shopagram.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.shopagram.data.User

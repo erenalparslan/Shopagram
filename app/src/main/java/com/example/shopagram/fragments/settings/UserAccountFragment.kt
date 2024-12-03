@@ -20,7 +20,7 @@ import com.example.shopagram.data.User
 import com.example.shopagram.databinding.FragmentUserAccountBinding
 import com.example.shopagram.dialog.setupBottomSheetDialog
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.UserAccountViewModel
+import com.example.shopagram.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

@@ -19,7 +19,7 @@ import com.example.shopagram.activities.LoginRegisterActivity
 import com.example.shopagram.databinding.FragmentProfileBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.showBottomNavigationView
-import com.example.shopagram.util.viewmodel.ProfileViewModel
+import com.example.shopagram.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

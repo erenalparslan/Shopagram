@@ -18,7 +18,7 @@ import com.example.shopagram.databinding.FragmentCartBinding
 import com.example.shopagram.firebase.FirebaseCommon
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.VerticalItemDecoration
-import com.example.shopagram.util.viewmodel.CartViewModel
+import com.example.shopagram.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 class CartFragment : Fragment(R.layout.fragment_cart) {

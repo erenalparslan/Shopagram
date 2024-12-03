@@ -14,7 +14,7 @@ import com.example.shopagram.data.User
 import com.example.shopagram.databinding.FragmentRegisterBinding
 import com.example.shopagram.util.RegisterValidation
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.RegisterViewModel
+import com.example.shopagram.viewmodel.RegisterViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

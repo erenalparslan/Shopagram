@@ -14,7 +14,7 @@ import com.example.shopagram.adapters.PostsAdapter
 import com.example.shopagram.data.Product
 import com.example.shopagram.databinding.FragmentSocialBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.PostViewModel
+import com.example.shopagram.viewmodel.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

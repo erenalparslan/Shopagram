@@ -16,7 +16,7 @@ import com.example.shopagram.R
 import com.example.shopagram.adapters.SearchAdapter
 import com.example.shopagram.databinding.FragmentSearchBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.SearchFragmentViewModel
+import com.example.shopagram.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

@@ -12,7 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.shopagram.R
 import com.example.shopagram.databinding.ActivityShoppingBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.CartViewModel
+import com.example.shopagram.viewmodel.CartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

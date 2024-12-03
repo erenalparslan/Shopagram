@@ -20,7 +20,7 @@ import com.example.shopagram.adapters.SpecialProductsAdapter
 import com.example.shopagram.databinding.FragmentMainCategoryBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.showBottomNavigationView
-import com.example.shopagram.util.viewmodel.MainCategoryViewModel
+import com.example.shopagram.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

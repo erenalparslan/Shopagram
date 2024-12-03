@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.shopagram.R
 import com.example.shopagram.databinding.FragmentIntrodcutionBinding
-import com.example.shopagram.util.viewmodel.IntroductionViewModel
-import com.example.shopagram.util.viewmodel.IntroductionViewModel.Companion.ACCOUNT_OPTIONS_FRAGMENT
+import com.example.shopagram.viewmodel.IntroductionViewModel
+import com.example.shopagram.viewmodel.IntroductionViewModel.Companion.ACCOUNT_OPTIONS_FRAGMENT
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

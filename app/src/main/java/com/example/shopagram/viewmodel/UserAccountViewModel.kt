@@ -1,4 +1,4 @@
-package com.example.shopagram.util.viewmodel
+package com.example.shopagram.viewmodel
 
 import android.app.Application
 import android.graphics.Bitmap

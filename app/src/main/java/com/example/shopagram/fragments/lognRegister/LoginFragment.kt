@@ -15,7 +15,7 @@ import com.example.shopagram.activities.ShoppingActivity
 import com.example.shopagram.databinding.FragmentLoginBinding
 import com.example.shopagram.dialog.setupBottomSheetDialog
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.LoginViewModel
+import com.example.shopagram.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.shopagram.data.Address
 import com.example.shopagram.databinding.FragmentAddressBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.viewmodel.AddressViewModel
+import com.example.shopagram.viewmodel.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
