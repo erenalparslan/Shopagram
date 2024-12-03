@@ -12,15 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.shopagram.R
 import com.example.shopagram.activities.ShoppingActivity
-
 import com.example.shopagram.databinding.FragmentLoginBinding
 import com.example.shopagram.dialog.setupBottomSheetDialog
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.LoginViewModel
+import com.example.shopagram.util.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
-
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -46,10 +43,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             buttonLoginLogin.setOnClickListener {
                 val email = edEmailLogin.text.toString().trim()
                 val password = edPasswordLogin.text.toString()
-                if(email!=""&&password!=""){
+                if (email != "" && password != "") {
                     viewModel.login(email, password)
-                }else{
-                    Toast.makeText(requireContext(), "E-posta veya şifre boş olamaz !!", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "E-posta veya şifre boş olamaz !!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
 
@@ -63,16 +64,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.resetPassword.collect{
+            viewModel.resetPassword.collect {
                 when (it) {
                     is Resource.Loading -> {
                     }
+
                     is Resource.Success -> {
-                        Snackbar.make(requireView(),"Sıfırlama bağlantısı e-postanıza gönderildi", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            requireView(),
+                            "Sıfırlama bağlantısı e-postanıza gönderildi",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
+
                     is Resource.Error -> {
-                        Snackbar.make(requireView(),"Error: ${it.message}", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(requireView(), "Error: ${it.message}", Snackbar.LENGTH_LONG)
+                            .show()
                     }
+
                     else -> Unit
 
                 }
@@ -85,6 +94,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     is Resource.Loading -> {
                         binding.buttonLoginLogin.startAnimation()
                     }
+
                     is Resource.Success -> {
                         binding.buttonLoginLogin.revertAnimation()
                         Intent(requireActivity(), ShoppingActivity::class.java).also { intent ->
@@ -92,16 +102,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             startActivity(intent)
                         }
                     }
+
                     is Resource.Error -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                         binding.buttonLoginLogin.revertAnimation()
                     }
+
                     else -> Unit
 
                 }
             }
         }
-
 
 
     }

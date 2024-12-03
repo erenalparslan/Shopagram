@@ -23,9 +23,8 @@ import com.example.shopagram.data.order.OrderStatus
 import com.example.shopagram.databinding.FragmentBillingBinding
 import com.example.shopagram.util.HorizontalItemDecoration
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.viewmodel.BillingViewModel
-import com.example.shopagram.viewmodel.OrderViewModel
+import com.example.shopagram.util.viewmodel.BillingViewModel
+import com.example.shopagram.util.viewmodel.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

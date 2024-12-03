@@ -14,14 +14,13 @@ import com.example.shopagram.data.User
 import com.example.shopagram.databinding.FragmentRegisterBinding
 import com.example.shopagram.util.RegisterValidation
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.RegisterViewModel
+import com.example.shopagram.util.viewmodel.RegisterViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-private val TAG = "RegisterFragment"
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
@@ -62,14 +61,17 @@ class RegisterFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.buttonRegisterRegister.startAnimation()
                     }
+
                     is Resource.Success -> {
                         binding.buttonRegisterRegister.revertAnimation()
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }
+
                     is Resource.Error -> {
                         Log.e(TAG,it.message.toString())
                         binding.buttonRegisterRegister.revertAnimation()
                     }
+
                     else -> Unit
                 }
             }
@@ -77,8 +79,8 @@ class RegisterFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.validation.collect { validation ->
-                if (validation.email is RegisterValidation.Failed){
-                    withContext(Dispatchers.Main){
+                if (validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
                         binding.edEmailRegister.apply {
                             requestFocus()
                             error = validation.email.message
@@ -86,8 +88,8 @@ class RegisterFragment : Fragment() {
                     }
                 }
 
-                if (validation.password is RegisterValidation.Failed){
-                    withContext(Dispatchers.Main){
+                if (validation.password is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
                         binding.edPasswordRegister.apply {
                             requestFocus()
                             error = validation.password.message
@@ -97,5 +99,9 @@ class RegisterFragment : Fragment() {
             }
         }
 
+    }
+
+    companion object {
+        const val TAG = "RegisterFragment"
     }
 }

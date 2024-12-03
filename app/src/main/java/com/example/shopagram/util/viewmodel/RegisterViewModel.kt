@@ -1,19 +1,20 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.shopagram.data.User
-import com.example.shopagram.util.*
 import com.example.shopagram.util.Constants.USER_COLLECTION
+import com.example.shopagram.util.RegisterFieldsState
+import com.example.shopagram.util.RegisterValidation
+import com.example.shopagram.util.Resource
+import com.example.shopagram.util.validateEmail
+import com.example.shopagram.util.validatePassword
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 

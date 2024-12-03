@@ -1,9 +1,8 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopagram.data.Address
-import com.example.shopagram.util.Constants.USER_COLLECTION
 import com.example.shopagram.util.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,7 +44,6 @@ class AddressViewModel @Inject constructor(
             }
         }
     }
-
 
 
     private fun validateInputs(address: Address): Boolean {

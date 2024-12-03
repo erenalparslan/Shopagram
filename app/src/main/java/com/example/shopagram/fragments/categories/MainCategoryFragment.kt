@@ -13,16 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.shopagram.R
 import com.example.shopagram.adapters.BestDealsAdapter
 import com.example.shopagram.adapters.BestProductsAdapter
 import com.example.shopagram.adapters.SpecialProductsAdapter
-import com.example.shopagram.databinding.FragmentHomeBinding
 import com.example.shopagram.databinding.FragmentMainCategoryBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.showBottomNavigationView
-import com.example.shopagram.viewmodel.MainCategoryViewModel
+import com.example.shopagram.util.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -54,18 +52,18 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         setupBestProducts()
 
         specialProductsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product",it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+            val b = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
         }
 
         bestDealsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product",it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+            val b = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
         }
 
         bestProductsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product",it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+            val b = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
         }
 
 
@@ -75,15 +73,18 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     is Resource.Loading -> {
                         showLoading()
                     }
+
                     is Resource.Success -> {
                         specialProductsAdapter.differ.submitList(it.data)
                         hideLoading()
                     }
+
                     is Resource.Error -> {
                         hideLoading()
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -95,15 +96,18 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     is Resource.Loading -> {
                         showLoading()
                     }
+
                     is Resource.Success -> {
                         bestDealsAdapter.differ.submitList(it.data)
                         hideLoading()
                     }
+
                     is Resource.Error -> {
                         hideLoading()
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -115,18 +119,21 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     is Resource.Loading -> {
                         binding.bestProductsProgressbar.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
                         bestProductsAdapter.differ.submitList(it.data)
                         binding.bestProductsProgressbar.visibility = View.GONE
 
 
                     }
+
                     is Resource.Error -> {
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         binding.bestProductsProgressbar.visibility = View.GONE
 
                     }
+
                     else -> Unit
                 }
             }

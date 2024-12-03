@@ -1,10 +1,9 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import android.app.Application
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopagram.ShopagramApplication

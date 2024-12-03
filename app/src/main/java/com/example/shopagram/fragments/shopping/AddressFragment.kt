@@ -10,12 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.shopagram.R
 import com.example.shopagram.data.Address
 import com.example.shopagram.databinding.FragmentAddressBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.viewmodel.AddressViewModel
+import com.example.shopagram.util.viewmodel.AddressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -98,10 +96,11 @@ class AddressFragment : Fragment() {
 
         binding.apply {
             imageAddressClose.setOnClickListener {
-                    val action =AddressFragmentDirections.actionAddressFragmentToBillingFragment3(0f,
-                        emptyArray(),
-                        false
-                    )
+                val action = AddressFragmentDirections.actionAddressFragmentToBillingFragment3(
+                    0f,
+                    emptyArray(),
+                    false
+                )
                 findNavController().navigate(action)
             }
         }

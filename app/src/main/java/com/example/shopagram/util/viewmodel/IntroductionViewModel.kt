@@ -1,4 +1,4 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
@@ -15,35 +15,35 @@ import javax.inject.Inject
 @HiltViewModel
 class IntroductionViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences,
-    private val firebaseAuth: FirebaseAuth
+    firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
     private val _navigate = MutableStateFlow(0)
-     val navigate: StateFlow<Int> = _navigate
+    val navigate: StateFlow<Int> = _navigate
 
-    companion object{
+    companion object {
         const val SHOPPING_ACTIVITY = 23
-        const val ACCOUNT_OPTIONS_FRAGMENT = R.id.action_introductionFragment_to_accountOptionsFragment
+        val ACCOUNT_OPTIONS_FRAGMENT = R.id.action_introductionFragment_to_accountOptionsFragment
     }
 
     init {
-        val isButtonClicked = sharedPreferences.getBoolean(INTRODUCTION_KEY,false)
+        val isButtonClicked = sharedPreferences.getBoolean(INTRODUCTION_KEY, false)
         val user = firebaseAuth.currentUser
 
-        if (user != null){
+        if (user != null) {
             viewModelScope.launch {
                 _navigate.emit(SHOPPING_ACTIVITY)
             }
-        }else if (isButtonClicked){
+        } else if (isButtonClicked) {
             viewModelScope.launch {
                 _navigate.emit(ACCOUNT_OPTIONS_FRAGMENT)
             }
-        }else{
+        } else {
             Unit
         }
     }
 
-    fun startButtonClick(){
-        sharedPreferences.edit().putBoolean(INTRODUCTION_KEY,true).apply()
+    fun startButtonClick() {
+        sharedPreferences.edit().putBoolean(INTRODUCTION_KEY, true).apply()
     }
 }

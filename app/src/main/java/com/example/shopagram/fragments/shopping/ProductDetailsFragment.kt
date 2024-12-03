@@ -1,9 +1,6 @@
 package com.example.shopagram.fragments.shopping
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,24 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.shopagram.R
-import com.example.shopagram.activities.ShoppingActivity
 import com.example.shopagram.adapters.ColorsAdapter
 import com.example.shopagram.adapters.SizesAdapter
 import com.example.shopagram.adapters.ViewPager2Images
 import com.example.shopagram.data.CartProduct
 import com.example.shopagram.data.Post
-import com.example.shopagram.data.Product
 import com.example.shopagram.databinding.FragmentProductDetailsBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.viewmodel.DetailsViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.type.Date
+import com.example.shopagram.util.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import java.lang.ref.Cleaner
 import java.util.Calendar
 
 @AndroidEntryPoint
@@ -81,10 +72,10 @@ class ProductDetailsFragment : Fragment() {
         }
 
         binding.sharePost.setOnClickListener {
-            val user=viewModel.user.value.data
+            val user = viewModel.user.value.data
 
-            val date=Calendar.getInstance().time
-            viewModel.sharePost(Post(user, product,date) )
+            val date = Calendar.getInstance().time
+            viewModel.sharePost(Post(user, product, date))
         }
 
 
@@ -104,6 +95,7 @@ class ProductDetailsFragment : Fragment() {
                         binding.buttonAddToCart.stopAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -125,6 +117,7 @@ class ProductDetailsFragment : Fragment() {
                         binding.sharePost.stopAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }

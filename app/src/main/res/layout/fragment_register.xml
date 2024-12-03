@@ -103,7 +103,7 @@
             android:inputType="textPassword"
             android:layout_marginTop="10dp"/>
 
-        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/buttonRegisterRegister"
             android:layout_width="0dp"
             android:layout_height="@dimen/mediumButtonHeight"

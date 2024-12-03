@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopagram.adapters.AllOrdersAdapter
 import com.example.shopagram.databinding.FragmentOrdersBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.viewmodel.AllOrdersViewModel
+import com.example.shopagram.util.viewmodel.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -48,6 +47,7 @@ class AllOrdersFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.progressbarAllOrders.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
                         binding.progressbarAllOrders.visibility = View.GONE
                         ordersAdapter.differ.submitList(it.data)
@@ -55,10 +55,12 @@ class AllOrdersFragment : Fragment() {
                             binding.tvEmptyOrders.visibility = View.VISIBLE
                         }
                     }
+
                     is Resource.Error -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         binding.progressbarAllOrders.visibility = View.GONE
                     }
+
                     else -> Unit
                 }
             }

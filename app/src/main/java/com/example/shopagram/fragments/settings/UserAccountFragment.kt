@@ -20,8 +20,7 @@ import com.example.shopagram.data.User
 import com.example.shopagram.databinding.FragmentUserAccountBinding
 import com.example.shopagram.dialog.setupBottomSheetDialog
 import com.example.shopagram.util.Resource
-import com.example.shopagram.util.hideBottomNavigationView
-import com.example.shopagram.viewmodel.UserAccountViewModel
+import com.example.shopagram.util.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -83,14 +82,17 @@ class UserAccountFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.buttonSave.startAnimation()
                     }
+
                     is Resource.Success -> {
                         binding.buttonSave.revertAnimation()
                         findNavController().navigateUp()
                     }
+
                     is Resource.Error -> {
                         binding.buttonSave.revertAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -122,7 +124,8 @@ class UserAccountFragment : Fragment() {
 
     private fun showUserInformation(data: User) {
         binding.apply {
-            Glide.with(this@UserAccountFragment).load(data.imagePath).error(ColorDrawable(Color.BLACK)).into(imageUser)
+            Glide.with(this@UserAccountFragment).load(data.imagePath)
+                .error(ColorDrawable(Color.BLACK)).into(imageUser)
             edFirstName.setText(data.firstName)
             edLastName.setText(data.lastName)
             edEmail.setText(data.email)

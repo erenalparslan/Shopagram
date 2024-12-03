@@ -1,4 +1,4 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,16 +16,16 @@ import javax.inject.Inject
 class AllOrdersViewModel @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth
-): ViewModel() {
+) : ViewModel() {
 
     private val _allOrders = MutableStateFlow<Resource<List<Order>>>(Resource.Unspecified())
-     val allOrders = _allOrders.asStateFlow()
+    val allOrders = _allOrders.asStateFlow()
 
     init {
         getAllOrders()
     }
 
-    fun getAllOrders(){
+    fun getAllOrders() {
         viewModelScope.launch {
             _allOrders.emit(Resource.Loading())
         }

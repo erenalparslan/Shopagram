@@ -3,7 +3,6 @@ package com.example.shopagram.fragments.shopping
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,16 +16,14 @@ import com.example.shopagram.R
 import com.example.shopagram.adapters.SearchAdapter
 import com.example.shopagram.databinding.FragmentSearchBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.MainCategoryViewModel
-import com.example.shopagram.viewmodel.SearchFragmentViewModel
-import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener
+import com.example.shopagram.util.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-@AndroidEntryPoint
-class SearchFragment: Fragment(R.layout.fragment_search) {
 
-    private lateinit var binding :FragmentSearchBinding
+@AndroidEntryPoint
+class SearchFragment : Fragment(R.layout.fragment_search) {
+
+    private lateinit var binding: FragmentSearchBinding
     private val adapter by lazy {
         SearchAdapter()
     }
@@ -40,19 +37,20 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentSearchBinding.inflate(inflater)
+        binding = FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager= GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        binding.searchRw.adapter=adapter
-        binding.searchRw.layoutManager=layoutManager
-        var searchText=""
+        val layoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        binding.searchRw.adapter = adapter
+        binding.searchRw.layoutManager = layoutManager
+        var searchText = ""
 
-        val watcher=object :TextWatcher {
+        val watcher = object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -62,20 +60,19 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                Log.d("cipsi", "afterTextChanged: $p0 ")
-                searchText=p0.toString()
+                searchText = p0.toString()
 
             }
         }
 
 
         binding.searchEt.addTextChangedListener(watcher)
-        binding.searchButton.setOnClickListener{
+        binding.searchButton.setOnClickListener {
             viewModel.fetchAllProducts(searchText)
         }
-        adapter.onClick={
-            val b = Bundle().apply { putParcelable("product",it) }
-            findNavController().navigate(R.id.action_searchFragment_to_productDetailsFragment,b)
+        adapter.onClick = {
+            val b = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_searchFragment_to_productDetailsFragment, b)
         }
 
 
@@ -86,17 +83,20 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
                     is Resource.Loading -> {
                         binding.bestProductsProgressbar.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
                         adapter.submitList(it.data)
                         binding.bestProductsProgressbar.visibility = View.GONE
 
 
                     }
+
                     is Resource.Error -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         binding.bestProductsProgressbar.visibility = View.GONE
 
                     }
+
                     else -> Unit
                 }
             }

@@ -6,8 +6,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.shopagram.data.Category
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.CategoryViewModel
-import com.example.shopagram.viewmodel.factory.BaseCategoryViewModelFactoryFactory
+import com.example.shopagram.util.viewmodel.CategoryViewModel
+import com.example.shopagram.util.viewmodel.factory.BaseCategoryViewModelFactoryFactory
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint

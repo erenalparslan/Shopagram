@@ -1,4 +1,4 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -46,7 +46,7 @@ class ProfileViewModel @Inject constructor(
             }
     }
 
-    fun logout(){
+    fun logout() {
         auth.signOut()
     }
 

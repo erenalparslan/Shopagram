@@ -1,19 +1,22 @@
 package com.example.shopagram.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.shopagram.R
 import com.example.shopagram.databinding.ActivityShoppingBinding
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.CartViewModel
+import com.example.shopagram.util.viewmodel.CartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShoppingActivity : AppCompatActivity() {
@@ -31,26 +34,29 @@ class ShoppingActivity : AppCompatActivity() {
         val navController = findNavController(R.id.shoppingHostFragment)
         binding.bottomNavigation.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, _, _ -> }
 
-
-        }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.cartProducts.collectLatest {
-                when (it) {
-                    is Resource.Success -> {
-                        val count = it.data?.size ?: 0
-                        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-                        bottomNavigation.getOrCreateBadge(R.id.cartFragment).apply {
-                            number = count
-                            backgroundColor = resources.getColor(R.color.g_blue)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.cartProducts.collectLatest {
+                    when (it) {
+                        is Resource.Success -> {
+                            val count = it.data?.size ?: 0
+                            val bottomNavigation =
+                                findViewById<BottomNavigationView>(R.id.bottomNavigation)
+                            bottomNavigation.getOrCreateBadge(R.id.cartFragment).apply {
+                                number = count
+                                backgroundColor =
+                                    ContextCompat.getColor(this@ShoppingActivity, R.color.g_blue)
+                            }
                         }
+
+                        else -> Unit
                     }
-                    else -> Unit
                 }
             }
         }
+
     }
 
 }

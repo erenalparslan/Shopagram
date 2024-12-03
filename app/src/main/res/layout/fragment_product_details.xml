@@ -148,7 +148,7 @@
 
         </LinearLayout>
 
-        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/sharePost"
             android:layout_width="0dp"
             android:layout_height="@dimen/mediumButtonHeight"
@@ -161,7 +161,7 @@
             app:layout_constraintTop_toBottomOf="@id/linearProductPref"
             app:spinning_bar_color="@color/white" />
 
-        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/buttonAddToCart"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
@@ -173,7 +173,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/linearProductPref"
             app:layout_constraintStart_toStartOf="@id/linearProductPref"
-            app:spinning_bar_color="@color/white" />
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

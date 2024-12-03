@@ -2,13 +2,12 @@ package com.example.shopagram.fragments.categories
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.shopagram.data.Category
 import com.example.shopagram.util.Resource
-import com.example.shopagram.viewmodel.CategoryViewModel
-import com.example.shopagram.viewmodel.factory.BaseCategoryViewModelFactoryFactory
+import com.example.shopagram.util.viewmodel.CategoryViewModel
+import com.example.shopagram.util.viewmodel.factory.BaseCategoryViewModelFactoryFactory
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PhoneFragment: BaseCategoryFragment() {
+class PhoneFragment : BaseCategoryFragment() {
 
     @Inject
     lateinit var firestore: FirebaseFirestore
@@ -34,15 +33,18 @@ class PhoneFragment: BaseCategoryFragment() {
                     is Resource.Loading -> {
                         showOfferLoading()
                     }
+
                     is Resource.Success -> {
                         offerAdapter.differ.submitList(it.data)
                         hideOfferLoading()
                     }
+
                     is Resource.Error -> {
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                         hideOfferLoading()
                     }
+
                     else -> Unit
                 }
             }
@@ -54,15 +56,18 @@ class PhoneFragment: BaseCategoryFragment() {
                     is Resource.Loading -> {
                         showBestProductsLoading()
                     }
+
                     is Resource.Success -> {
                         bestProductsAdapter.differ.submitList(it.data)
                         hideBestProductsLoading()
                     }
+
                     is Resource.Error -> {
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                         hideBestProductsLoading()
                     }
+
                     else -> Unit
                 }
             }

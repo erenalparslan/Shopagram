@@ -1,12 +1,9 @@
-package com.example.shopagram.viewmodel
+package com.example.shopagram.util.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopagram.data.Post
-import com.example.shopagram.data.Product
-import com.example.shopagram.firebase.FirebaseCommon
 import com.example.shopagram.util.Resource
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostViewModel @Inject constructor(
     private val firestore: FirebaseFirestore,
-):ViewModel() {
+) : ViewModel() {
 
     private val _sharePost = MutableStateFlow<Resource<List<Post>>>(Resource.Unspecified())
     val sharePost = _sharePost.asStateFlow()
@@ -31,7 +28,8 @@ class PostViewModel @Inject constructor(
         viewModelScope.launch {
             _sharePost.emit(Resource.Loading())
         }
-        firestore.collection("sharedPosts").orderBy("date",Query.Direction.DESCENDING).get().addOnSuccessListener { result ->
+        firestore.collection("sharedPosts").orderBy("date", Query.Direction.DESCENDING).get()
+            .addOnSuccessListener { result ->
                 val posts = result.toObjects(Post::class.java)
                 viewModelScope.launch {
                     _sharePost.emit(Resource.Success(posts))

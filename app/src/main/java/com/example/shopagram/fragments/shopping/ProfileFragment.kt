@@ -19,7 +19,7 @@ import com.example.shopagram.activities.LoginRegisterActivity
 import com.example.shopagram.databinding.FragmentProfileBinding
 import com.example.shopagram.util.Resource
 import com.example.shopagram.util.showBottomNavigationView
-import com.example.shopagram.viewmodel.ProfileViewModel
+import com.example.shopagram.util.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -72,16 +72,22 @@ class ProfileFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.progressbarSettings.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
                         binding.progressbarSettings.visibility = View.GONE
-                        Glide.with(requireView()).load(it.data!!.imagePath).error(ColorDrawable(
-                            Color.BLACK)).into(binding.imageUser)
+                        Glide.with(requireView()).load(it.data!!.imagePath).error(
+                            ColorDrawable(
+                                Color.BLACK
+                            )
+                        ).into(binding.imageUser)
                         binding.tvUserName.text = "${it.data.firstName} ${it.data.lastName}"
                     }
+
                     is Resource.Error -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         binding.progressbarSettings.visibility = View.GONE
                     }
+
                     else -> Unit
                 }
             }

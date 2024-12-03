@@ -1,15 +1,90 @@
+# Kotlin and Java specific
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+*.class
+*.jar
+*.war
+*.ear
+
+# Android Studio specific
+.gradle/
+.idea/
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+build/
+captures/
+out/
+
+# Gradle files
+.gradle
+build/
+!gradle-wrapper.jar
+
+# Local configuration file (sdk location, etc)
 local.properties
+
+# Signing files
+*.jks
+*.keystore
+
+# Generated files
+.cxx/
+.externalNativeBuild/
+
+# JetBrains
+.idea
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/vcs.xml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/misc.xml
+
+# Android specific
+*.apk
+*.ap_
+*.hprof
+
+# IntelliJ specific
+*.ipr
+*.iws
+*.idea/
+
+# Others
+*.log
+*.swp
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.class
+*.apk
+*.ap_
+*.dex
+*.aar
+*.zip
+*.bin
+*.lock
+
+# Firebase
+google-services.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# NDK
+obj/
+*.so
+*.ndk
+
+# React Native (if applicable)
+node_modules/
+*.pack
+*.flow
+.expo/
